@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+    db:
+        image: boriselec/morph-dict-editor-db
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASS}
+    backend:
+        image: boriselec/morph-dict-editor
+        depends_on:
+            - "db"
+        environment:
+            - MORPH_FILE_ROOT=/tmp/
+            - MORPH_DB_URL=jdbc:mariadb://db:3306/morph
+            - MORPH_DB_USERNAME=root
+            - MORPH_DB_PASSWORD=${DB_PASS}
+            - MORPH_FILELOADER_PERIOD_MINUTES=${MORPH_FILELOADER_PERIOD_MINUTES}
+            - MORPH_DBLOADER_PERIOD_MINUTES=${MORPH_DBLOADER_PERIOD_MINUTES}
+            - MORPH_REPO_PERIOD_MINUTES=${MORPH_REPO_PERIOD_MINUTES}
+        ports: 
+            - "8080:8080"
+        command: ["bash", "-c", "sleep 3 && java -jar /usr/local/jetty/start.jar"]
+    frontend:
+        image: boriselec/morph-dict-editor-frontend
+        environment:
+            - backend_url=${HOST_URL}:8080/morph
+        ports: 
+            - "80:80"
