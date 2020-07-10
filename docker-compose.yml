@@ -19,7 +19,7 @@ services:
             - MORPH_REPO_PERIOD_MINUTES=${MORPH_REPO_PERIOD_MINUTES}
         ports: 
             - "8080:8080"
-        command: ["bash", "-c", "sleep 3 && java -jar /usr/local/jetty/start.jar"]
+        command: ["bash", "-c", "sleep 30 && java -jar /usr/local/jetty/start.jar"]
     frontend:
         image: boriselec/morph-dict-editor-frontend
         environment:
