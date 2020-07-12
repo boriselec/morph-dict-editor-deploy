@@ -38,6 +38,11 @@ server {
         include /config/nginx/proxy.conf;
 	}
 
+	location /morph/api/ {
+        proxy_pass http://backend:8080/morph/api/;
+        include /config/nginx/proxy.conf;
+	}
+
 	location ~ \.php$ {
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
 		fastcgi_pass 127.0.0.1:9000;
