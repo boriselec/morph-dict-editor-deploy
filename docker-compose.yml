@@ -24,7 +24,7 @@ services:
         image: boriselec/morph-dict-editor-frontend
         container_name: frontend
         environment:
-            - backend_url=${HOST_URL}/morph
+            - backend_url=https://${HOST_URL}/morph
     proxy:
         image: linuxserver/letsencrypt
         container_name: proxy
