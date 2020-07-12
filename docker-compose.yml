@@ -27,8 +27,6 @@ services:
         container_name: frontend
         environment:
             - backend_url=${HOST_URL}:8080/morph
-        ports: 
-            - "80:80"
     proxy:
         image: linuxserver/letsencrypt
         container_name: proxy
