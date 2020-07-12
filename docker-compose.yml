@@ -28,6 +28,9 @@ services:
     proxy:
         image: linuxserver/letsencrypt
         container_name: proxy
+        depends_on:
+            - "backend"
+            - "frontend"
         ports:
             - 443:443
             - 80:80
