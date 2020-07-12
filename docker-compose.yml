@@ -3,10 +3,12 @@ version: "3"
 services:
     db:
         image: boriselec/morph-dict-editor-db
+        container_name: db
         environment:
             - MYSQL_ROOT_PASSWORD=${DB_PASS}
     backend:
         image: boriselec/morph-dict-editor
+        container_name: backend
         depends_on:
             - "db"
         environment:
@@ -22,6 +24,7 @@ services:
         command: ["bash", "-c", "sleep 30 && java -jar /usr/local/jetty/start.jar"]
     frontend:
         image: boriselec/morph-dict-editor-frontend
+        container_name: frontend
         environment:
             - backend_url=${HOST_URL}:8080/morph
         ports: 
