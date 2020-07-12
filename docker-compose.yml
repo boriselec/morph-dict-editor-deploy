@@ -19,14 +19,12 @@ services:
             - MORPH_FILELOADER_PERIOD_MINUTES=${MORPH_FILELOADER_PERIOD_MINUTES}
             - MORPH_DBLOADER_PERIOD_MINUTES=${MORPH_DBLOADER_PERIOD_MINUTES}
             - MORPH_REPO_PERIOD_MINUTES=${MORPH_REPO_PERIOD_MINUTES}
-        ports: 
-            - "8080:8080"
         command: ["bash", "-c", "sleep 30 && java -jar /usr/local/jetty/start.jar"]
     frontend:
         image: boriselec/morph-dict-editor-frontend
         container_name: frontend
         environment:
-            - backend_url=${HOST_URL}:8080/morph
+            - backend_url=${HOST_URL}/morph
     proxy:
         image: linuxserver/letsencrypt
         container_name: proxy
@@ -37,5 +35,5 @@ services:
             - ${CONFIG_PATH}/site-confs:/config/nginx/site-confs
         environment:
             - EMAIL=boris-elec@mail.ru
-            - URL=morph.boriselec.com
+            - URL=${HOST_URL}
             - VALIDATION=http
