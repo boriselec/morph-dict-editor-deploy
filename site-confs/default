@@ -38,8 +38,8 @@ server {
         include /config/nginx/proxy.conf;
 	}
 
-	location /morph/api/ {
-        proxy_pass http://backend:8080/morph/api/;
+	location /morph/ {
+        proxy_pass http://backend:8080/morph/;
         include /config/nginx/proxy.conf;
 	}
 
