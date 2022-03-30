@@ -8,8 +8,7 @@ services:
         image: linuxserver/letsencrypt
         container_name: proxy
         depends_on:
-            - "backend"
-            - "frontend"
+            - "octordle"
         ports:
             - 443:443
             - 80:80
