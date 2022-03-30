@@ -26,13 +26,8 @@ server {
 
 	client_max_body_size 0;
 
-	location / {
-        proxy_pass http://frontend:80/;
-        include /config/nginx/proxy.conf;
-	}
-
-	location /morph/ {
-        proxy_pass http://backend:8080/morph/;
+	location /octordle/ {
+        proxy_pass http://octordle:80/;
         include /config/nginx/proxy.conf;
 	}
 }
